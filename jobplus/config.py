@@ -24,7 +24,7 @@ class ProductionConfig(BaseConfig):
 
 class TestingConfig(BaseConfig):
     """
-    测试环境配置d
+    测试环境配置
     """
     pass
 
