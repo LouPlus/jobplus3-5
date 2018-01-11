@@ -3,7 +3,7 @@ manage.py
 项目入口文件
 """
 
-# app = Flask(__name__)  　改为使用工厂函数创建gi
+# app = Flask(__name__)  　改为使用工厂函数创建
 #  db = SQLAlchemy(app)   写入数据模型models.py
 
 
