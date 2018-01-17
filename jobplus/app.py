@@ -6,7 +6,7 @@ Flask APP配置 、创建相关代码
 from flask import Flask
 from jobplus.config import configs
 from jobplus.models import db
-
+from flask_migrate import Migrate  #管理数据库
 
 def create_app(config):
     """App 工厂"""
@@ -14,6 +14,7 @@ def create_app(config):
     app = Flask(__name__)
     app.config.from_object(configs.get(config))
     db.init_app(app)
+    Migrate(app,db)
     register_blueprints(app)
     return app
 

@@ -7,7 +7,7 @@ class BaseConfig(object):
     """
     配置基类
     """
-    pass
+    SECRET_KEY = 'make sure to set a very secret key'   #csrf
 
 class DevelopmentConfig(BaseConfig):
     """
