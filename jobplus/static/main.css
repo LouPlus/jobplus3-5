@@ -1,0 +1,29 @@
+a,
+a:hover,
+a:visited {
+    text-decoration: none !important;
+}
+
+.course_name,
+.course_description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body{
+    background-color:white;
+
+}
+
+
+form{
+    /* 设置form 宽度为400px */
+    width: 400px;
+    /*设置form居中*/
+    margin: 0 auto;
+}
+
+.nav-pagination {
+    text-align: center;
+}
