@@ -39,7 +39,6 @@ class User(Base, UserMixin):
     username = db.Column(db.String(32), unique=True, index=True, nullable=False)
     email = db.Column(db.String(64), unique=True, index=True,nullable=False)
     _password = db.Column('password', db.String(256), nullable=False)
-
     role = db.Column(db.SmallInteger, default=ROLE_USER)
     company_id = db.Column(db.Integer, db.ForeignKey('company.id', ondelete='CASCADE'))
     company = db.relationship('Company', uselist=False)
@@ -77,7 +76,6 @@ class Company(Base):
     logo = db.Column(db.String(128), unique=True)
     website = db.Column(db.String(128), unique=True, index=True, nullable=False)
     address = db.Column(db.String(32), index=True, nullable=False)
-
     # 一句话介绍
     intro = db.Column(db.String(512), index=True, nullable=False)
     #公司描述
