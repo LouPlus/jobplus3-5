@@ -42,6 +42,47 @@
             padding: 0;
             padding-bottom: 5px;
         }
+        .jobbox {
+            font-size: 20px;
+            font-style: italic;
+             
+            margin: 0;
+            padding: 0;
+            height: 170px;
+            width: 49%;
+            display: inline-block;
+        }
+        
+        .companybox {
+            font-size: 20px;
+            font-style: italic;
+             
+            margin: 0;
+            padding: 0;
+            height: 130px;
+            width: 90%;
+        }
+        
+        .companybox1 {
+            font-size: 20px;
+            font-style: italic;
+             
+            margin: 0;
+            padding: 0;
+            height: 130px;
+            width: 10%;
+            display: inline-block;
+        }
+        .companybox2 {
+            font-size: 20px;
+            font-style: italic;
+             
+            margin: 0;
+            padding: 0;
+            height: 130px;
+            width: 79%;
+            display: inline-block;
+        }
         
         
     </style>
@@ -64,8 +105,8 @@
                 <!--Collect the nav links,forms,and other content for toggling-->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="/">公司<span class="sr-only">(current)</span> </a> </li>
-                        <li><a href="/">职位</a> </li>
+                        <li class="active"><a href="/company">公司<span class="sr-only">(current)</span> </a> </li>
+                        <li><a href="/job">职位</a> </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{ url_for('front.companyregister') }}">公司注册</a></li>
