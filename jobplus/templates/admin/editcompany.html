@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_form %}
+{% block body %}
+<div class="container">
+<div class="form">
+    <h2>editcompany</h2>
+    {{ render_form(form,url_for('admin.edit_company')) }}
+</div>
+    </div>
+{% endblock %}

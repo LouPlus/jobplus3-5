@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %}qiu zhi wang zhan{% endblock %}
+
+{% block body %} 
+<div class="container-fluid">
+<div class="row-fluid">
+    <div class="col-md-3">
+        <h4 style="margin-left: 15px; font-size: 30px;">list</h4>
+        <div class="list-group" style="margin: 0; padding: 0;">
+            <a href="#" class="list-group-item">users</a>
+            <a href="#" class="list-group-item">add</a>
+            <a href="#" class="list-group-item">sub</a>
+            <a href="#" class="list-group-item">describe</a>
+        </div>
+    </div>
+    
+    {% block user %}{% endblock %}
+    
+
+
+</div>
+
+{% endblock %}

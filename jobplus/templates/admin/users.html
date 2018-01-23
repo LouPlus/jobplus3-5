@@ -1,0 +1,107 @@
+{% extends "admin/admin_base.html" %}
+
+
+{% block title %}qiu zhi wang zhan{% endblock %}
+{% block user %}
+    
+    
+    <div style="padding: 0;margin: 0;" class="col-md-9">
+    <div class="button-group" style="float: right;padding: 0;margin: 0;">
+        <a href="{{ url_for('admin.add_company') }}" type="button" class="btn btn-default">
+                            Add company
+                        </a>
+                        <a href="{{ url_for('admin.add_user') }}" type="button" class="btn btn-default">
+                            Add user
+                        </a>
+        </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Username</td>
+                <td>email</td>
+                <td>type</td>
+                
+                <td>phonenumber</td>
+                <td>company</td>
+                <td>website</td>
+                <td>statement</td>
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            
+            <tr>
+                <td>1</td>
+                <td>chris</td>
+                <td>456789123@qq.com</td>
+                <td>python</td>
+                
+                
+                <td>18802374882</td>
+                <td>majic-vr</td>
+                <td>majic-vr.com</td>
+                
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="#" type="button" class="btn btn-default">
+                            Edit
+                        </a>
+                        <a href="#" type="button" class="btn btn-default">
+                            Dsiable
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            
+            
+            <tr>
+                <td>1</td>
+                <td>chris</td>
+                <td>456789123@qq.com</td>
+                <td>python</td>
+                
+                
+                <td>18802374882</td>
+                <td>majic-vr</td>
+                <td>majic-vr.com</td>
+                
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="#" type="button" class="btn btn-default">
+                            Edit
+                        </a>
+                        <a href="#" type="button" class="btn btn-default">
+                            Dsiable
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% for user in ones %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="#" type="button" class="btn btn-default">
+                            Edit
+                        </a>
+                        <a href="#" type="button" class="btn btn-default">
+                            Disable
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+        
+    </div>
+
+{% endblock %}
+
+
