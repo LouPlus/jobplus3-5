@@ -32,7 +32,6 @@ class User(Base, UserMixin):
     __tablename__ = 'user'
 
     ROLE_USER = 10
-    ROLE_COMPANY = 20
     ROLE_ADMIN = 30
 
     id = db.Column(db.Integer, primary_key=True)
@@ -70,21 +69,42 @@ class User(Base, UserMixin):
 
 class Company(Base):
     __tablename__ = 'company'
-
+    ROLE_COMPANY = 20
     id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(64), unique=True, index=True,nullable=False)
+    _password = db.Column('password',db.String(256), nullable=False)
     companyname = db.Column(db.String(64), unique=True, index=True, nullable=False)
     logo = db.Column(db.String(128), unique=True)
-    website = db.Column(db.String(128), unique=True, index=True, nullable=False)
-    address = db.Column(db.String(32), index=True, nullable=False)
+    website = db.Column(db.String(128), unique=True, index=True, nullable=True)
+    address = db.Column(db.String(32), index=True, nullable=True)
     # 一句话介绍
-    intro = db.Column(db.String(512), index=True, nullable=False)
+    intro = db.Column(db.String(512), index=True, nullable=True)
     #公司描述
     desc = db.Column(db.String(1024))
+    role = db.Column(db.SmallInteger, default=ROLE_COMPANY)
     jobs = db.relationship('Job')
+
 
     def __repr__(self):
         return '<Company:{}>'.format(self.companyname)
+    @property
+    def password(self):
+        return self._password
 
+    @password.setter
+    def password(self, orig_password):
+        self._password = generate_password_hash(orig_password)
+
+    def check_password(self, password):
+        return check_password_hash(self._password, password)
+
+    @property
+    def is_admin(self):
+        return self.role == self.ROLE_ADMIN
+
+    @property
+    def is_company(self):
+        return self.role == self.ROLE_COMPANY
 
 class Job(Base):
     __tablename__ = 'job'
