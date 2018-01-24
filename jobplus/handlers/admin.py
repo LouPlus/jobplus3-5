@@ -6,9 +6,11 @@
 from flask import Blueprint,render_template
 from jobplus.forms import LoginForm, UserRegisterForm, CompanyRegisterForm
 from jobplus.models import User,Company,Job
+from jobplus.decorators import admin_required
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
 @admin.route('/')
+@admin_required
 def index():
     return render_template('admin/admin_base.html')
 
