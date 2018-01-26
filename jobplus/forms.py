@@ -6,8 +6,8 @@ forms.py
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, ValidationError
 from wtforms.validators import Length, Email, EqualTo, Required
-from jobplus.models import db,User,Company,Job
-
+from jobplus.models import db,User,Job
+from flask_login import current_user
 
 class UserRegisterForm(FlaskForm):
     username = StringField('用户名',validators=[Required(),Length(3,24)])
@@ -21,6 +21,7 @@ class UserRegisterForm(FlaskForm):
         user.username = self.username.data
         user.email = self.email.data
         user.password = self.password.data
+        user.role = 10
         db.session.add(user)
         db.session.commit()
         return user
@@ -31,6 +32,28 @@ class UserRegisterForm(FlaskForm):
     def validate_email(self, field):
         if User.query.filter_by(email=field.data).first():
             raise ValidationError('email has been existed')
+
+
+
+
+class UserEditForm(FlaskForm):
+    username = StringField('用户名')
+    email = StringField('邮箱')
+    password = PasswordField('密码')
+    repeat_password = PasswordField('重复密码')
+    submit = SubmitField('保存')
+
+    def edit_user(self,user):
+        user.username = self.username.data
+        user.email = self.email.data
+        
+        if self.password.data:
+            user.password = self.password.data
+        db.session.add(user)
+        db.session.commit()
+        return user
+       
+
 
 class CompanyRegisterForm(FlaskForm):
     email = StringField('邮箱', validators=[Required(), Email()])
@@ -46,24 +69,64 @@ class CompanyRegisterForm(FlaskForm):
     submit = SubmitField('提交')
 
     def create_company(self):
-        company = Company()
+        company = User()
         company.companyname = self.companyname.data
         company.email = self.email.data
         company.password = self.password.data
+        company.role = 20
+        company.website = self.website.data
+        company.address = self.address.data
+        company.intro = self.intro.data
+        company.desc = self.desc.data
+        company.logo = self.logo.data
         db.session.add(company)
         db.session.commit()
         return company
     def validate_companyname(self,field):
-        if Company.query.filter_by(companyname=field.data).first():
+        if User.query.filter_by(companyname=field.data).first():
             raise ValidationError('companyname has been existed')
 
     def validate_email(self, field):
-        if Company.query.filter_by(email=field.data).first():
+        if User.query.filter_by(email=field.data).first():
             raise ValidationError('email has been existed')
+
+
+
+
+class CompanyEditForm(FlaskForm):
+    email = StringField('邮箱')
+    password = PasswordField('密码')
+    repeat_password = PasswordField('重复密码')
+    companyname = StringField('公司名称')
+    logo = StringField('logo address')
+    website = StringField('website')
+    address = StringField('address')
+    intro = StringField('intro')
+    desc = StringField('description')
+    
+    submit = SubmitField('保存')
+
+    def edit_company(self,user):
+        user.companyname = self.companyname.data
+        if self.password.data:
+            user.password = self.password.data
+        user.email = self.email.data
+        user.website = self.website.data
+        user.address = self.address.data
+        user.intro = self.intro.data
+        user.desc = self.desc.data
+        user.logo = self.logo.data
+        db.session.add(user)
+        db.session.commit()
+        return user
+
+
+
+
 
 class LoginForm(FlaskForm):
     email = StringField('邮箱',validators=[Required(),Email()])
-    password = StringField('密码',validators=[Required(),Length(6,24)])
+    password = PasswordField('密码')#validators=[Required(),Length(0,24)])
     remember_me = BooleanField('记住我')
     submit = SubmitField('提交')
     def validate_email(self, field):
