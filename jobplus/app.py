@@ -8,7 +8,7 @@ from jobplus.config import configs
 from jobplus.models import db
 from flask_login import LoginManager
 from flask_migrate import Migrate  #管理数据库
-from jobplus.models import User,Company,Job
+from jobplus.models import User,Job
 def create_app(config):
     """App 工厂"""
 

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_form %}
+{% block body %}
+<div class="container">
+<div class="form">
+    <h2>edit {% if user.is_company %}company{% else %}user{% endif %}</h2>
+    {{ render_form(form,url_for('admin.edit_user',user_id=user.id)) }}
+</div>
+    </div>
+{% endblock %}
