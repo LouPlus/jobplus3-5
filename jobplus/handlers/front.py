@@ -12,7 +12,8 @@ front = Blueprint('front', __name__)
 
 @front.route('/')
 def index():
-    return render_template('index.html')
+    job = Job.query.all()
+    return render_template('index.html',ones=job)
 
 
 @front.route('/login',methods=['GET','POST'])
