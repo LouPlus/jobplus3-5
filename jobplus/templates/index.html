@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% from "macros.html" import render_pagination%}
 
 {% block title %}jobplus{% endblock %}
 
@@ -29,7 +29,7 @@
 <div class="container">
     
         <!-- this is really code -->
-        {% for one in ones %}
+        {% for one in pagination.items %}
         <div class="col-lg-3 col-md-4 col-md-offset-1 col-sm-6 a">
             <div class="mybox">
             <p class="position-left"><a href="#">job_name:{{one.jobname}}</a></p>
@@ -52,7 +52,7 @@
         {% endfor%}
         
     </div>
-</div>
+{{ render_pagination(pagination, 'front.index') }}
        
 
 {% endblock %}

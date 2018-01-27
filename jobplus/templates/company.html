@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-
+{% from "macros.html" import render_pagination%}
 
 {% block title %}Jobplus{% endblock %}
 
 {% block body %} 
 <div class="container"><h1 align="center">company list</h1>
 
-    {% for company in companys %}
+    {% for company in pagination.items %}
 <div style="border-bottom: 1px solid #ccc;" class="row-fluid">
     <div class="companybox">
     <div class="companybox1">
@@ -23,7 +23,7 @@
 </div>
 
     {% endfor %}
-    
+{{ render_pagination(pagination, 'company.index') }}
     {% endblock %}
     
 

@@ -13,6 +13,7 @@ class DevelopmentConfig(BaseConfig):
     """
     开发环境配置
     """
+    INDEX_PRE_PAGE = 6
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://root@localhost:3306/jobplus?charset=utf8'
 

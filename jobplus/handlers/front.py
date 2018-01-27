@@ -3,7 +3,7 @@ front.py
 首页路由文件
 """
 
-from flask import Blueprint, render_template,flash,redirect,url_for
+from flask import Blueprint, render_template,flash,redirect,url_for,request,current_app
 from jobplus.models import User,Job
 from jobplus.forms import LoginForm, UserRegisterForm, CompanyRegisterForm ,CompanyEditForm ,UserEditForm
 from flask_login import login_user, logout_user, login_required,current_user
@@ -12,8 +12,13 @@ front = Blueprint('front', __name__)
 
 @front.route('/')
 def index():
-    job = Job.query.all()
-    return render_template('index.html',ones=job)
+    page = request.args.get('page',default=1, type=int)
+    pagination = Job.query.paginate(
+        page=page,
+        per_page=current_app.config['INDEX_PRE_PAGE'],
+        error_out=False
+    )
+    return render_template('index.html',pagination=pagination)
 
 
 @front.route('/login',methods=['GET','POST'])

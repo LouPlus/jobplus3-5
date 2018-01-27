@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-
+{% from "macros.html" import render_pagination%}
 
 {% block title %}qiu zhi wang zhan{% endblock %}
 
 {% block body %} 
 <div class="container"><h1 align="center">the latest possition</h1>
 
-    {% for job in jobs %}
+    {% for job in pagination.items %}
 <div style="border-bottom: 1px solid #ccc;" class="row-fluid">
     <div class="jobbox">
     <div><a href="#">jobname:{{job.jobname}}</a></div>
@@ -21,7 +21,9 @@
     <div><a href="#">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
     </div>
     {% endfor %}
-    
+    </div>
+</div>
+{{ render_pagination(pagination, 'job.index') }}
     {% endblock %}
     
 
