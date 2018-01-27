@@ -5,59 +5,20 @@
 
 {% block body %} 
 <div class="container"><h1 align="center">the latest possition</h1>
-<div style="border-bottom: 1px solid #ccc;" class="row-fluid">
-    <div class="jobbox">
-    <div><a href="#">jobname:{{job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{salary,request}}</div>
-    <div><a href="#">hr and updatetime:{{hr,updatetime}}</a></div>
-    </div>
-    <div class="jobbox">
-    <div><a href="#">jobname:{{job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{salary,request}}</div>
-    <div><a href="#">hr and updatetime:{{hr,updatetime}}</a></div>
-    </div>
-<div style="border-bottom: 1px solid #ccc;" class="row-fluid">
-    <div class="jobbox">
-    <div><a href="#">jobname:{{job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{salary,request}}</div>
-    <div><a href="#">hr and updatetime:{{hr,updatetime}}</a></div>
-    </div>
-    <div class="jobbox">
-    <div><a href="#">jobname:{{job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{salary,request}}</div>
-    <div><a href="#">hr and updatetime:{{hr,updatetime}}</a></div>
-    </div>
-<div style="border-bottom: 1px solid #ccc;" class="row-fluid">
-    <div class="jobbox">
-    <div><a href="#">jobname:{{job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{salary,request}}</div>
-    <div><a href="#">hr and updatetime:{{hr,updatetime}}</a></div>
-    </div>
-    <div class="jobbox">
-    <div><a href="#">jobname:{{job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{salary,request}}</div>
-    <div><a href="#">hr and updatetime:{{hr,updatetime}}</a></div>
-    </div>
-</div>
+
     {% for job in jobs %}
 <div style="border-bottom: 1px solid #ccc;" class="row-fluid">
     <div class="jobbox">
-    <div><a href="#">jobname:{{job.job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{job.salary,job.request}}</div>
-    <div><a href="#">hr and updatetime:{{job.hr,job.updatetime}}</a></div>
+    <div><a href="#">jobname:{{job.jobname}}</a></div>
+    <div>address:{{job.address}}</div>
+    <div>salary and request:{{job.salary,job.requirement}}</div>
+    <div><a href="#">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
     </div>
     <div class="jobbox">
-    <div><a href="#">jobname:{{job.job_name}}</a></div>
-    <div>address:{{address}}</div>
-    <div>salary and request:{{job.salary,job.request}}</div>
-    <div><a href="#">hr and updatetime:{{job.hr,job.updatetime}}</a></div>
+    <div><a href="#">jobname:{{job.jobname}}</a></div>
+    <div>address:{{job.address}}</div>
+    <div>salary and request:{{job.salary,job.requirement}}</div>
+    <div><a href="#">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
     </div>
     {% endfor %}
     

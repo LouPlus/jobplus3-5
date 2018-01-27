@@ -5,49 +5,6 @@
 
 {% block body %} 
 <div class="container"><h1 align="center">company list</h1>
-<div style="border-bottom: 1px solid #ccc;" class="row-fluid">
-    <div class="companybox">
-    <div class="companybox1">
-        <span style="font-size: 80px; margin-top: 20px;" class="glyphicon glyphicon-list-alt"></span>
-        </div>
-    <div class="companybox2">
-        <div><a href="#">companyname:{{company_name}}</a></div>
-        <div>address:{{address}}</div>
-        <div>describe:{{request}}</div>
-        <div><a href="#">updatetime:{{updatetime}}
-            </a></div>
-        </div>
-    </div>
-</div>
-
-<div style="border-bottom: 1px solid #ccc;" class="row-fluid">
-    <div class="companybox">
-    <div class="companybox1">
-        <span style="font-size: 80px; margin-top: 20px;" class="glyphicon glyphicon-list-alt"></span>
-        </div>
-    <div class="companybox2">
-        <div><a href="#">companyname:{{company_name}}</a></div>
-        <div>address:{{address}}</div>
-        <div>describe:{{request}}</div>
-        <div><a href="#">updatetime:{{updatetime}}
-            </a></div>
-        </div>
-    </div>
-</div>
-<div style="border-bottom: 1px solid #ccc;" class="row-fluid">
-    <div class="companybox">
-    <div class="companybox1">
-        <span style="font-size: 80px; margin-top: 20px;" class="glyphicon glyphicon-list-alt"></span>
-        </div>
-    <div class="companybox2">
-        <div><a href="#">companyname:{{company_name}}</a></div>
-        <div>address:{{address}}</div>
-        <div>describe:{{request}}</div>
-        <div><a href="#">updatetime:{{updatetime}}
-            </a></div>
-        </div>
-    </div>
-</div>
 
     {% for company in companys %}
 <div style="border-bottom: 1px solid #ccc;" class="row-fluid">
@@ -56,10 +13,10 @@
         <span style="font-size: 80px; margin-top: 20px;" class="glyphicon glyphicon-list-alt"></span>
         </div>
     <div class="companybox2">
-        <div><a href="#">companyname:{{company.company_name}}</a></div>
-        <div>address:{{address}}</div>
-        <div>describe:{{company.describe}}</div>
-        <div><a href="#">hr and updatetime:{{company.updatetime}}
+        <div><a href="#">companyname:{{company.companyname}}</a></div>
+        <div>address:{{company.address}}</div>
+        <div>describe:{{company.desc}}</div>
+        <div><a href="#">hr and updatetime:{{company.updated_at}}
             </a></div>
         </div>
     </div>

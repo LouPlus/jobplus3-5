@@ -11,7 +11,8 @@ company = Blueprint('company', __name__, url_prefix='/company')
 
 @company.route('/')
 def index():
-    return render_template('company.html')
+    companys = User.query.filter_by(role=20).all()
+    return render_template('company.html',companys=companys)
 
 @company.route('/admin/profile',methods=['GET','POST'])
 def profile():
