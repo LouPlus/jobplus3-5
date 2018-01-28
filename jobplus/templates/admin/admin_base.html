@@ -9,8 +9,8 @@
     <div class="col-md-3">
         <h4 style="margin-left: 15px; font-size: 30px;">list</h4>
         <div class="list-group" style="margin: 0; padding: 0;">
-            <a href="#" class="list-group-item">users</a>
-            <a href="#" class="list-group-item">add</a>
+            <a href="{{ url_for('admin.admin_users') }}" class="list-group-item">users</a>
+            <a href="{{ url_for('admin.admin_job') }}" class="list-group-item">jobs</a>
             <a href="#" class="list-group-item">sub</a>
             <a href="#" class="list-group-item">describe</a>
         </div>

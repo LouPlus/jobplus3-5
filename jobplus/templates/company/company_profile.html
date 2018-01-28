@@ -6,6 +6,10 @@
 {% block body %}
 <div class="form">
     <h2>company edit information</h2>
+    <div>
+    <button style="height: 40px;float: right">add job</button>
+    </div>
+    <div class="clearfix"></div>
     {{ render_form(form,url_for('company.profile')) }}
 </div>
 {% endblock %}

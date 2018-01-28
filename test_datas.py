@@ -7,15 +7,15 @@ fake = Faker()
 
 
 def iter_user():
-    for i in range(randint(11,21)):
+    for i in range(20):
         yield User(
-            username = fake.word(),
-            email = fake.word(),
+            username = str(randint(400,500))+fake.word(),
+            email = fake.word()+'@'+fake.word()+'.com',
             password = '123456',
             role = 10,
             logo = fake.word(),
-            companyname = fake.word(),
-            website = fake.word(),
+            companyname = str(randint(1,20))+fake.word(),
+            website = fake.word()+fake.word()+'.com',
             address = fake.word(),
             intro = fake.word(),
             desc = fake.word(),
@@ -25,20 +25,22 @@ def iter_user():
 
 
 def iter_company():
-    for i in range(randint(11,21)):
+    for i in range(20):
         yield User(
-            username = fake.word(),
-            email = fake.word(),
+            username = str(randint(300,350))+fake.word(),
+            email = fake.word()+'@'+fake.word()+'.com',
             password = '123456',
             role = 20,
-            logo = fake.word(),
-            companyname = fake.word(),
-            website = fake.word(),
-            address = fake.word(),
-            intro = fake.word(),
-            desc = fake.word(),
+            logo = fake.word()+fake.word(),
+            companyname = fake.word()+fake.word(),
+            website = fake.word()+fake.word()+'.com',
+            address = fake.word()+fake.word(),
+            intro = fake.word()+fake.word(),
+            desc = fake.word()+fake.word(),
             is_disable = True
             )
+
+
 
 def iter_m_admin():
     yield User(
@@ -64,9 +66,9 @@ def iter_m_user():
         role = 10
         )
 def iter_jobs():
-    for i in range(randint(11,21)):
+    for i in range(50):
         yield Job(
-            jobname = fake.word(),
+            jobname = fake.word()+fake.word(),
             salary = fake.building_number(),
             exprequirement = fake.word(),
             edurequirement = fake.word(),
@@ -92,4 +94,16 @@ def run():
         db.session.commit()
     except Exception as e:
         print(e)
-        db.session.rollback
+        print('insert failed')
+    for i in Job.query.all():
+        a = randint(0,19)
+        user = User.query.filter_by(role=20).all()[a]
+        user.jobs.append(i)
+        db.session.add(user)
+        
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        db.session.rollback()

@@ -1,0 +1,64 @@
+{% extends "admin/admin_base.html" %}
+
+
+{% block title %}Jobplus{% endblock %}
+{% block user %}
+    
+    
+    <div style="padding: 0;margin: 0;" class="col-md-9">
+    <div class="button-group" style="float: right;padding: 0;margin: 0;">
+        <a href="{{ url_for('admin.add_job') }}" type="button" class="btn btn-default">
+                            Add job
+        </a>
+        </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Jobname</td>
+                <td>salary</td>
+                <td>exprequirement</td>
+                
+                <td>edurequirement</td>
+                <td>address</td>
+                <td>desc</td>
+                <td>requirement</td>
+                <td>status</td>
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.id }}</td>
+                <td>{{ job.jobname }}</td>
+                <td>{{ job.salary }}</td>
+                <td>{{ job.exprequirement }}</td>
+                <td>{{ job.edurequirement }}</td>
+                <td>{{ job.address }}</td>
+                <td>{{ job.desc }}</td>
+                <td>{{ job.requirement }}</td>
+                <td>{{ job.status }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="#" type="button" class="btn btn-default">
+                            Edit
+                        </a>
+                        <a href="{{ url_for('admin.online_job',job_id=job.id) }}" type="button" class="btn btn-default">
+                            {% if job.status %}online{% else %}downline{% endif %}
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+        
+    </div>
+
+{% endblock %}
+
+

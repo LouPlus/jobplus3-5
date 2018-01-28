@@ -35,7 +35,7 @@ def login():
             return redirect(url_for('user.profile'))
     return render_template('login.html', form=form)
 
-@front.route('/userregister',methods=['GET','POST'])
+@front.route('/user_register',methods=['GET','POST'])
 def userregister():
 
     form = UserRegisterForm()
@@ -43,7 +43,7 @@ def userregister():
         form.create_user()
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))
-    return render_template('userregister.html', form=form)
+    return render_template('user/user_register.html', form=form)
 
 @front.route('/companyregister',methods=['GET','POST'])
 def companyregister():
@@ -52,7 +52,7 @@ def companyregister():
         form.create_company()
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))
-    return render_template('companyregister.html',form=form)
+    return render_template('company/company_register.html',form=form)
 
 
 @front.route('/logout')

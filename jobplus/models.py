@@ -42,13 +42,12 @@ class User(Base, UserMixin):
     
     logo = db.Column(db.String(128),unique=True,index=True,nullable=True)
     companyname = db.Column(db.String(128),unique=True, index=True, nullable=True)
-    website = db.Column(db.String(128), unique=True, index=True, nullable=True)
+    website = db.Column(db.String(128),index=True, nullable=True)
     address = db.Column(db.String(32),index=True, nullable=True)
     intro = db.Column(db.String(512), index=True,nullable=True)
     desc = db.Column(db.String(1024))
     
-    jobs = db.relationship('Job',secondary=user_job,backref='users')
-
+    jobs = db.relationship('Job',secondary=user_job,backref='users') 
     is_disable = db.Column(db.Boolean, default=False)
 
     def __repr__(self):
@@ -82,14 +81,13 @@ class Job(Base):
     __tablename__ = 'job'
 
     id = db.Column(db.Integer, primary_key=True)
-    jobname = db.Column(db.String(32), unique=True, index=True)
+    jobname = db.Column(db.String(32),index=True)
     salary = db.Column(db.String(32))
     exprequirement = db.Column(db.String(32))  # 经验要求
     edurequirement = db.Column(db.String(32))  # 学历要求
     address = db.Column(db.String(32))
     desc = db.Column(db.String(512))  # 职位描述
     requirement = db.Column(db.String(512))  # 职位要求
-    status =db.Column(db.Boolean,default=1) #是否上线
-
+    status = db.Column(db.Boolean,default=1) #是否上线
     def __repr__(self):
         return '<Job:{}>'.format(self.jobname)

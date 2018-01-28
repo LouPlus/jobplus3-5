@@ -13,7 +13,7 @@
         <span style="font-size: 80px; margin-top: 20px;" class="glyphicon glyphicon-list-alt"></span>
         </div>
     <div class="companybox2">
-        <div><a href="#">companyname:{{company.companyname}}</a></div>
+        <div><a href="{{ url_for('company.company_information',company_id=company.id)}}">companyname:{{company.companyname}}</a></div>
         <div>address:{{company.address}}</div>
         <div>describe:{{company.desc}}</div>
         <div><a href="#">hr and updatetime:{{company.updated_at}}

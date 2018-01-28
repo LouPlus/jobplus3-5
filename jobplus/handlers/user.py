@@ -21,4 +21,4 @@ def profile():
     if form.validate_on_submit():
         form.edit_user(current_user)
         flash('the user information has been updated successfully!')
-    return render_template('user/userprofile.html',form=form)
+    return render_template('user/user_profile.html',form=form)
