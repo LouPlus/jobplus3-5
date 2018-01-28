@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 64d04f999dc6
+Revision ID: 9a324ef17be1
 Revises: 
-Create Date: 2018-01-27 20:26:01.260517
+Create Date: 2018-01-28 20:41:00.985331
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '64d04f999dc6'
+revision = '9a324ef17be1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,7 +32,7 @@ def upgrade():
     sa.Column('status', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_index(op.f('ix_job_jobname'), 'job', ['jobname'], unique=True)
+    op.create_index(op.f('ix_job_jobname'), 'job', ['jobname'], unique=False)
     op.create_table('user',
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -56,7 +56,7 @@ def upgrade():
     op.create_index(op.f('ix_user_intro'), 'user', ['intro'], unique=False)
     op.create_index(op.f('ix_user_logo'), 'user', ['logo'], unique=True)
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
-    op.create_index(op.f('ix_user_website'), 'user', ['website'], unique=True)
+    op.create_index(op.f('ix_user_website'), 'user', ['website'], unique=False)
     op.create_table('user_job',
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('job_id', sa.Integer(), nullable=True),

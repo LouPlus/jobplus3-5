@@ -17,7 +17,7 @@ def index():
         per_page=current_app.config['INDEX_PRE_PAGE'],
         error_out=False
     )
-    return render_template('company.html',pagination=pagination)
+    return render_template('company/company_list.html',pagination=pagination)
 
 @company.route('/admin/profile',methods=['GET','POST'])
 def profile():
@@ -33,4 +33,9 @@ def profile():
         form.edit_company(current_user)
         flash('the company information has been updated succeessfully!')
         return redirect(url_for('front.index'))
-    return render_template('company/profile.html',form=form)
+    return render_template('company/company_profile.html',form=form)
+
+@company.route('/<int:company_id>')
+def company_information(company_id):
+    company_information = User.query.get_or_404(company_id)
+    return render_template('company/company_information.html',company_information=company_information)
