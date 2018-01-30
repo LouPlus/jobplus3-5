@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Jobplus{% endblock %}
+{% block body %} 
+<div class="container-fluid">
+<div class="row-fluid">
+    <div class="col-md-3">
+        <h4 style="margin-left: 15px; font-size: 30px;">list</h4>
+        <div class="list-group" style="margin: 0; padding: 0;">
+            
+            <a href="#" class="list-group-item">company job list</a>
+           
+        </div>
+    </div>
+    
+    {% block user %}
+    
+    
+    
+    <div style="padding: 0;margin: 0;" class="col-md-9">
+    <div class="button-group" style="float: right;padding: 0;margin: 0;">
+        <a href="{{ url_for('company.add_job',company_id=current_user.id) }}" type="button" class="btn btn-default">
+                            Add job
+        </a>
+        </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Jobname</td>
+                <td>salary</td>
+                <td>exprequirement</td>
+                
+                <td>edurequirement</td>
+                <td>address</td>
+                <td>desc</td>
+                <td>requirement</td>
+                <td>status</td>
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            
+            {% for job in jobs %}
+            <tr>
+                <td>{{ job.id }}</td>
+                <td>{{ job.jobname }}</td>
+                <td>{{ job.salary }}</td>
+                <td>{{ job.exprequirement }}</td>
+                <td>{{ job.edurequirement }}</td>
+                <td>{{ job.address }}</td>
+                <td>{{ job.desc }}</td>
+                <td>{{ job.requirement }}</td>
+                <td>{{ job.status }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="{{ url_for('company.edit_job',job_id=job.id) }}" type="button" class="btn btn-default">
+                            Edit
+                        </a>
+                        <a href="{{ url_for('job.job_delete',job_id=job.id) }}" type="button" class="btn btn-default">
+                            delete
+                        </a>
+                        <a href="{{ url_for('company.online_job',job_id=job.id) }}" type="button" class="btn btn-default">
+                            {% if job.status %}online{% else %}downline{% endif %}
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+        
+    </div>
+{% endblock %}
+
+{% endblock %}
+
+
+

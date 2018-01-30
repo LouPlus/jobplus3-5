@@ -4,7 +4,14 @@
 <div class="container">
 <div class="form">
     <h2>add job</h2>
+    {% if current_user.is_admin %}
+    <h2>admin</h2>
     {{ render_form(form,url_for('admin.add_job')) }}
+    {% endif %}
+    {% if current_user.is_company %}
+    <h2>company</h2>
+    {{ render_form(form,url_for('company.add_job',company_id=current_user.id)) }}
+    {% endif %}
 </div>
     </div>
 {% endblock %}

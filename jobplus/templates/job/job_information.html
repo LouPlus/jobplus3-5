@@ -3,7 +3,7 @@
 <div class="container">
 <div class="row">
     <div class="col-md-8">
-        
+       
         <p>{{ job_information.jobname }}</p>
     <p>{{ job_information.desc }}</p>
     <p>{{ job_information.jobname }}</p>
@@ -13,8 +13,13 @@
 
     
     <div class="col-md-4">
-    <p>{{ job_information.jobname }}</p>
-    
+    {% if current_user.is_authenticated %}
+        {% if not job_information.current_user_is_applied %}
+          <a href="{{ url_for('job.job_apply',job_id=job_information.id) }}" class="btn btn-success btn-lg dilivery-btn">submit resume</a>
+        {% else %}
+          <a href="#" class="btn btn-success btn-lg dilivery-btn" disabled="disabled">submited</a>
+        {% endif %}
+    {% endif %}
     </div>
     
     </div>

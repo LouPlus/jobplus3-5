@@ -5,7 +5,7 @@ models.py
 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask_login import UserMixin
+from flask_login import UserMixin,current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
@@ -91,3 +91,33 @@ class Job(Base):
     status = db.Column(db.Boolean,default=1) #是否上线
     def __repr__(self):
         return '<Job:{}>'.format(self.jobname)
+    @property
+    def current_user_is_applied(self):
+        resume = Resume.query.filter_by(job_id=self.id,user_id=current_user.id).first()
+        return (resume is not None)
+
+class Resume(Base):
+    __tablename = 'resume'
+
+    STATUS_WAITING = 1
+    STATUS_REJECT = 2
+    STATUS_ACCEPT = 3
+
+    id = db.Column(db.Integer, primary_key=True)
+    job_id = db.Column(db.Integer,db.ForeignKey('job.id',ondelete='SET NULL'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id',ondelete='SET NULL'))    
+    status = db.Column(db.SmallInteger, default=STATUS_WAITING)
+
+    response = db.Column(db.String(256))
+
+
+
+
+
+
+
+
+
+
+
+

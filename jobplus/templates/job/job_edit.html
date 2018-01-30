@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_form %}
+
+{% block title %}Job Edit{% endblock %}
+
+{% block body %}
+<div class="form">
+    <h2>Job edit information</h2>
+    
+    {{ render_form(form,url_for('company.edit_job',job_id=job_id)) }}
+</div>
+{% endblock %}

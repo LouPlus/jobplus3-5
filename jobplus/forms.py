@@ -141,6 +141,44 @@ class JobRegisterForm(FlaskForm):
         db.session.add(job)
         db.session.commit()
         return job
+    def company_create_job(self,company_id):
+        job = Job()
+        job.jobname = self.jobname.data
+        job.salary = self.salary.data
+        job.exprequirement = self.exprequirement.data
+        job.edurequirement = self.edurequirement.data
+        job.address = self.address.data
+        job.desc = self.desc.data
+        job.requirement = self.requirement.data
+        company = User.query.filter_by(id=company_id).first()
+        company.jobs.append(job)
+        db.session.add(job)
+        db.session.add(company)
+        db.session.commit()
+        return job
+
+
+class JobEditForm(FlaskForm):
+    jobname = StringField('职位名称')
+    salary = StringField('薪水')
+    exprequirement = StringField('经验要求')
+    edurequirement = StringField('受教育程度')
+    address = StringField('地址')
+    desc = StringField('简介')
+    requirement = StringField('其他要求')
+    submit = SubmitField('保存')
+    def edit_job(self,job):
+        job.jobname = self.jobname.data
+        job.salary = self.salary.data
+        job.exprequirement = self.exprequirement.data
+        job.edurequirement = self.edurequirement.data
+        job.address = self.address.data
+        job.desc = self.desc.data
+        job.requirement = self.requirement.data
+        db.session.add(job)
+        db.session.commit()
+        return job
+
 
 class LoginForm(FlaskForm):
     email = StringField('邮箱',validators=[Required(),Email()])

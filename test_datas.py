@@ -100,8 +100,15 @@ def run():
         user = User.query.filter_by(role=20).all()[a]
         user.jobs.append(i)
         db.session.add(user)
-        
-
+    for i in User.query.filter_by(role=10).all():
+        jobs = Job.query.all():
+        a = randint(21,43)
+        job = jobs[a]
+        resume =Resume()
+        resume.job_id = job.id
+        resume.user_id = i.id
+        resume.status = 1
+        db.session.add(resume)
     try:
         db.session.commit()
     except Exception as e:
