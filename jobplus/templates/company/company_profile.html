@@ -6,8 +6,11 @@
 {% block body %}
 <div class="form">
     <h2>company edit information</h2>
-    <div>
-    <button style="height: 40px;float: right">add job</button>
+    <div style="float: right">
+        
+    <a href="{{ url_for('company.job_company_admin',company_id=current_user.id ) }}" type="button" class="btn btn-default">
+                            job list
+        </a>
     </div>
     <div class="clearfix"></div>
     {{ render_form(form,url_for('company.profile')) }}
