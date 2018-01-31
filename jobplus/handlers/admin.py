@@ -3,7 +3,7 @@
  管理者路由文件
 """
 
-from flask import Blueprint,render_template,flash,redirect,url_for
+from flask import Blueprint,render_template,flash,redirect,url_for,request,current_app
 from jobplus.forms import LoginForm, UserRegisterForm, CompanyRegisterForm, UserEditForm, CompanyEditForm ,JobRegisterForm
 from jobplus.models import User,Job,db
 from jobplus.decorators import admin_required
@@ -18,8 +18,13 @@ def index():
 @admin.route('/users')
 @admin_required
 def admin_users():
-    lis = User.query.all()
-    return render_template('admin/admin_users.html',ones=lis)
+    page = request.args.get('page', default=1, type=int)
+    pagination = User.query.paginate(
+        page=page,
+        per_page=current_app.config['INDEX_PRE_PAGE'],
+        error_out=False
+    )
+    return render_template('admin/admin_users.html',pagination=pagination)
 
 @admin.route('/users/adduser',methods=['GET','POST'])
 @admin_required
@@ -86,8 +91,13 @@ def disable_user(user_id):
 @admin.route('/jobs',methods=['GET','POST'])
 @admin_required
 def admin_job():
-    jobs = Job.query.all()
-    return render_template('admin/admin_jobs.html',jobs=jobs)
+    page = request.args.get('page',default=1, type=int)
+    pagination = Job.query.paginate(
+        page=page,
+        per_page=current_app.config['INDEX_PRE_PAGE'],
+        error_out=False
+    )
+    return render_template('admin/admin_jobs.html',pagination=pagination)
 
 @admin.route('jobs/<int:job_id>/online',methods=['GET','POST'])
 @admin_required

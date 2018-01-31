@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% from "macros.html" import render_apply_pagination %}
+{% block title %}Jobplus{% endblock %}
+{% block body %} 
+<div class="container-fluid">
+<div class="row-fluid">
+    <div class="col-md-3">
+        <h4 style="margin-left: 15px; font-size: 30px;">list</h4>
+        <div class="list-group" style="margin: 0; padding: 0;">
+            
+            <a href="{{ url_for('company.admin_apply',company_id=company_id, status='waiting') }}" class="list-group-item">waiting list</a>
+            <a href="{{ url_for('company.admin_apply',company_id=company_id, status='accept') }}" class="list-group-item">accept list</a>
+            <a href="{{ url_for('company.admin_apply',company_id=company_id, status='reject') }}" class="list-group-item">reject list</a>
+        </div>
+    </div>
+    
+    {% block user %}
+    
+    
+    
+    <div style="padding: 0;margin: 0;" class="col-md-9">
+        
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User_id</th>
+                <th>Job_id</th>
+                <th>time</th>
+                
+            </tr>
+        </thead>
+        
+        <tbody>
+            
+            
+            {% for resume in pagination.items %}
+            <tr>
+                
+                <td>{{ resume.company_id }}</td>
+                <td>{{ resume.user_id }}</td>
+                <td>{{ resume.job_id }}</td>
+                <td>{{ resume.updated_at }}</td>
+                >
+                <td>
+                    <div class="btn-group" role="group">
+                        <a href="{{ url_for('company.admin_apply_accept',company_id=current_user.id,resume_id=resume.id) }}" type="button" class="btn btn-default">
+                            accept
+                        </a>
+                        <a href="{{ url_for('company.admin_apply_reject',company_id=current_user.id,resume_id=resume.id) }}" type="button" class="btn btn-default">
+                            reject
+                        </a>
+                        
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>   
+         {{ render_apply_pagination(pagination,'company.admin_apply',current_user.id) }}
+    </div>
+  
+{% endblock %}
+
+{% endblock %}
+
+
+

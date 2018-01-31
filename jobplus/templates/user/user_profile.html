@@ -4,8 +4,10 @@
 {% block title %}Edit{% endblock %}
 
 {% block body %}
+<div class="container">
 <div class="form">
     <h2>user edit information</h2>
     {{ render_form(form,url_for('user.profile')) }}
 </div>
+    </div>
 {% endblock %}

@@ -1,5 +1,5 @@
 from faker import Faker
-from jobplus.models import db,User,Job
+from jobplus.models import db,User,Job,Resume
 from random import randint
 
 
@@ -7,25 +7,25 @@ fake = Faker()
 
 
 def iter_user():
-    for i in range(20):
+    for i in range(200):
         yield User(
             username = str(randint(400,500))+fake.word(),
             email = fake.word()+'@'+fake.word()+'.com',
             password = '123456',
             role = 10,
-            logo = fake.word(),
-            companyname = str(randint(1,20))+fake.word(),
+            logo = fake.word()+fake.word(),
+            companyname = str(randint(1,20))+fake.word()+fake.word(),
             website = fake.word()+fake.word()+'.com',
-            address = fake.word(),
-            intro = fake.word(),
-            desc = fake.word(),
+            address = fake.word()+fake.word(),
+            intro = fake.word()+fake.word(),
+            desc = fake.word()+fake.word(),
             is_disable = True
 
         )
 
 
 def iter_company():
-    for i in range(20):
+    for i in range(10):
         yield User(
             username = str(randint(300,350))+fake.word(),
             email = fake.word()+'@'+fake.word()+'.com',
@@ -96,17 +96,19 @@ def run():
         print(e)
         print('insert failed')
     for i in Job.query.all():
-        a = randint(0,19)
+        a = randint(0,9)
         user = User.query.filter_by(role=20).all()[a]
         user.jobs.append(i)
+        i.company_id = user.id
         db.session.add(user)
     for i in User.query.filter_by(role=10).all():
-        jobs = Job.query.all():
-        a = randint(21,43)
+        jobs = Job.query.all()
+        a = randint(0,49)
         job = jobs[a]
         resume =Resume()
         resume.job_id = job.id
         resume.user_id = i.id
+        resume.company_id = job.users[0].id
         resume.status = 1
         db.session.add(resume)
     try:

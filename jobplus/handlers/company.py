@@ -4,7 +4,7 @@ company.py
 """
 
 from flask import Blueprint,render_template,flash,redirect,url_for,request,current_app
-from jobplus.models import User,Job,db
+from jobplus.models import User,Job,db,Resume
 from jobplus.forms import LoginForm, UserRegisterForm, CompanyRegisterForm,CompanyEditForm, JobRegisterForm, JobEditForm
 from flask_login import current_user
 from jobplus.decorators import company_required
@@ -46,8 +46,13 @@ def company_information(company_id):
 
 @company.route('/<int:company_id>/jobs')
 def job_company_admin(company_id):
-    company = User.query.get_or_404(company_id)
-    return render_template('company/company_job_admin.html',jobs=company.jobs)
+    page = request.args.get('page',default=1, type=int)
+    pagination = Job.query.filter_by(company_id=company_id).paginate(
+        page=page,
+        per_page=current_app.config['INDEX_PRE_PAGE'],
+        error_out=False
+    )
+    return render_template('company/company_job_admin.html',pagination=pagination)
 
 
 
@@ -85,3 +90,54 @@ def edit_job(job_id):
         flash('update success','success')
         return redirect(url_for('company.job_company_admin',company_id=current_user.id))
     return render_template('job/job_edit.html',job_id=job_id,form=form)
+
+
+@company.route('/<int:company_id>/admin/apply')
+@company_required
+def admin_apply(company_id):
+    status = request.args.get('status','all')
+    page = request.args.get('page',default=1, type=int)
+    resume = Resume.query.filter_by(company_id=company_id)
+    if status == 'waiting':
+        resume = resume.filter(Resume.status==Resume.STATUS_WAITING)
+    elif status == 'accept':
+        resume = resume.filter(Resume.status==Resume.STATUS_ACCEPT)
+    elif status == 'reject':
+        resume = resume.filter(Resume.status==Resume.STATUS_REJECT)
+    pagination = resume.paginate(
+        page=page,
+        per_page=current_app.config['INDEX_PRE_PAGE'],
+        error_out=False
+    )
+    return render_template('company/company_admin_apply.html', pagination=pagination, company_id=company_id)
+
+
+
+@company.route('/<int:company_id>/admin/apply/<int:resume_id>/reject')
+@company_required
+def admin_apply_reject(company_id,resume_id):
+    resume = Resume.query.get_or_404(resume_id)
+    resume.status = Resume.STATUS_REJECT
+    flash('已经拒绝该投递','success')
+    db.session.add(resume)
+    db.session.commit()
+    return redirect(url_for('company.admin_apply', company_id=company_id,status='waiting'))
+
+
+
+@company.route('/<int:company_id>/admin/apply/<int:resume_id>/accept/')
+@company_required
+def admin_apply_accept(company_id, resume_id):
+    resume = Resume.query.get_or_404(resume_id)
+    resume.status = Resume.STATUS_ACCEPT
+    flash('已经接受该投递,可以安排面试','success')
+    db.session.add(resume)
+    db.session.commit()
+    return redirect(url_for('company.admin_apply',company_id=company_id,status='waiting'))
+
+
+
+
+
+
+

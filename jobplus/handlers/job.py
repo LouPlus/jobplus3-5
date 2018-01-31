@@ -56,3 +56,13 @@ def job_delete(job_id):
     db.session.commit()
     flash('职位已经删除','success')
     return redirect(url_for('company.job_company_admin',company_id=current_user.id))
+
+
+
+    
+
+
+
+
+
+
