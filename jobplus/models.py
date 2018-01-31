@@ -89,6 +89,7 @@ class Job(Base):
     desc = db.Column(db.String(512))  # 职位描述
     requirement = db.Column(db.String(512))  # 职位要求
     status = db.Column(db.Boolean,default=1) #是否上线
+    company_id = db.Column(db.Integer)
     def __repr__(self):
         return '<Job:{}>'.format(self.jobname)
     @property
@@ -105,7 +106,8 @@ class Resume(Base):
 
     id = db.Column(db.Integer, primary_key=True)
     job_id = db.Column(db.Integer,db.ForeignKey('job.id',ondelete='SET NULL'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id',ondelete='SET NULL'))    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id',ondelete='SET NULL'))   
+    company_id = db.Column(db.Integer) 
     status = db.Column(db.SmallInteger, default=STATUS_WAITING)
 
     response = db.Column(db.String(256))

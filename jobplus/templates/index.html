@@ -4,35 +4,15 @@
 {% block title %}jobplus{% endblock %}
 
 {% block body %} 
-<div class="pull-right">
-<form>
-    <div class="form-group">
-        <label class="col-sm-2">email</label>
-        <div class="col-sm-10">
-            <input type="email" class="form-control" placeholder="please input your emailaddress!">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-2">password</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" placeholder="please input your password!">
-        </div>
-    </div>
-    <div>
-    <button class="pull-right">login</button>
-    <button class="pull-right">register</button></div>
-</form>
-    </div>
-    <div class="clearfix"></div>
-    
+
 
 <div class="container">
-    
+   
         <!-- this is really code -->
         {% for one in pagination.items %}
         <div class="col-lg-3 col-md-4 col-md-offset-1 col-sm-6 a">
             <div class="mybox">
-            <p class="position-left"><a href="#">job_name:{{one.jobname}}</a></p>
+            <p class="position-left"><a href="{{ url_for('job.job_information',job_id=one.id) }}">job_name:{{one.jobname}}</a></p>
             
             <p class="position-right2">salary:{{one.salary}}</p>
             </div>

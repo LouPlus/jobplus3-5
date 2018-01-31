@@ -1,6 +1,6 @@
 {% extends "admin/admin_base.html" %}
 
-
+{% from "macros.html" import render_pagination%}
 {% block title %}Jobplus{% endblock %}
 {% block user %}
     
@@ -31,7 +31,7 @@
         <tbody>
             
             
-            {% for job in jobs %}
+            {% for job in pagination.items %}
             <tr>
                 <td>{{ job.id }}</td>
                 <td>{{ job.jobname }}</td>
@@ -56,7 +56,7 @@
             {% endfor %}
         </tbody>
     </table>   
-        
+        {{ render_pagination(pagination, 'admin.admin_job') }}
     </div>
 
 {% endblock %}

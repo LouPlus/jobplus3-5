@@ -4,15 +4,22 @@
 {% block title %}Edit{% endblock %}
 
 {% block body %}
+<div class="container">
 <div class="form">
     <h2>company edit information</h2>
     <div style="float: right">
-        
+    <a href="{{ url_for('company.admin_apply',company_id=current_user.id ) }}" type="button" class="btn btn-default">
+                            resume list
+        </a> 
     <a href="{{ url_for('company.job_company_admin',company_id=current_user.id ) }}" type="button" class="btn btn-default">
                             job list
         </a>
     </div>
     <div class="clearfix"></div>
-    {{ render_form(form,url_for('company.profile')) }}
+    <div class="form">   
+        {{ render_form(form,url_for('company.profile')) }}
 </div>
+
+    </div>
+    </div>
 {% endblock %}

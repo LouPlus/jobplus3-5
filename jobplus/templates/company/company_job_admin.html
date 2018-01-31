@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "macros.html" import render_pagination %}
 {% block title %}Jobplus{% endblock %}
 {% block body %} 
 <div class="container-fluid">
@@ -42,7 +43,7 @@
         <tbody>
             
             
-            {% for job in jobs %}
+            {% for job in pagination.items %}
             <tr>
                 <td>{{ job.id }}</td>
                 <td>{{ job.jobname }}</td>
@@ -70,8 +71,9 @@
             {% endfor %}
         </tbody>
     </table>   
-        
+         {{ render_pagination(pagination,'company.job_company_admin') }}
     </div>
+      
 {% endblock %}
 
 {% endblock %}

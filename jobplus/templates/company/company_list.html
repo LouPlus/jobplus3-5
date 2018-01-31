@@ -16,7 +16,7 @@
         <div><a href="{{ url_for('company.company_information',company_id=company.id)}}">companyname:{{company.companyname}}</a></div>
         <div>address:{{company.address}}</div>
         <div>describe:{{company.desc}}</div>
-        <div><a href="#">hr and updatetime:{{company.updated_at}}
+        <div><a href="{{ url_for('company.company_information',company_id=company.id)}}">hr and updatetime:{{company.updated_at}}
             </a></div>
         </div>
     </div>

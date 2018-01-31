@@ -12,13 +12,13 @@
     <div><a href="{{ url_for('job.job_information',job_id=job.id) }}">jobname:{{job.jobname}}</a></div>
     <div>address:{{job.address}}</div>
     <div>salary and request:{{job.salary,job.requirement}}</div>
-    <div><a href="#">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
+    <div><a href="{{ url_for('job.job_information',job_id=job.id) }}">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
     </div>
     <div class="jobbox">
-    <div><a href="#">jobname:{{job.jobname}}</a></div>
+    <div><a href="{{ url_for('job.job_information',job_id=job.id) }}">jobname:{{job.jobname}}</a></div>
     <div>address:{{job.address}}</div>
     <div>salary and request:{{job.salary,job.requirement}}</div>
-    <div><a href="#">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
+    <div><a href="{{ url_for('job.job_information',job_id=job.id) }}">hr and updatetime:{{job.edurequirement,job.updated_at}}</a></div>
     </div>
     {% endfor %}
     </div>
