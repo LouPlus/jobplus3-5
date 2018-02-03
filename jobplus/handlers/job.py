@@ -22,7 +22,8 @@ def index():
 @job.route('/<int:job_id>')
 def job_information(job_id):
     job_information = Job.query.get_or_404(job_id)
-    return render_template('job/job_information.html',job_information=job_information)
+    company = User.query.get_or_404(job_information.company_id)
+    return render_template('job/job_information.html',job_information=job_information,company=company)
 
 
 

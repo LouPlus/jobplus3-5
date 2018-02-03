@@ -5,87 +5,134 @@
         <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scale=no">
         <title>{% block title%}Jobplus{% endblock %}</title>
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="static/main.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
     
     <style>
-        .a {
-            height:170px;
-            border:1px solid #ccc;
-            margin-bottom: 35px;
-            padding: 0;
-        }
-        .position-left {
-            font-size: 20px;
-            display: inline-block;
-            margin: 0;
-            padding: 0;
-        }
-        .position-right1 {
-            display: inline-block;
-            margin-left:0.6em;
-            margin: 0;
-            padding: 0;
-        }
-        .position-right2 {
-            display: inline-block;
-            font-size: 18px;
-            
-            color: crimson;
-            margin: 0;
-            padding: 0;
-            padding-left: 30px;
-            
+        
+      
+.a {
+    height:180px;
+    border:1px solid #ccc;
+    margin-bottom: 35px;
+    padding: 0;
+    }
+.position-left {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    }
+.position-right1 {
+    display: inline-block;
+    margin-left:0.6em;
+    margin: 0;
+    padding: 0;
+    }
+.position-right2 {
+    display: inline-block;
+    font-size: 18px;
+    
+    color: crimson;
+    margin: 0;
+    padding: 0;
+    padding-left: 30px;
+        
 }
-        .mybox {
-            border: 1px solid #ccc;
-            margin: 0;
-            padding: 0;
-            padding-bottom: 5px;
-        }
-        .jobbox {
-            font-size: 20px;
-            font-style: italic;
-             
-            margin: 0;
-            padding: 0;
-            height: 170px;
-            width: 49%;
-            display: inline-block;
-        }
-        
-        .companybox {
-            font-size: 20px;
-            font-style: italic;
-             
-            margin: 0;
-            padding: 0;
-            height: 130px;
-            width: 90%;
+.mybox {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+    }
+.jobbox {
+    font-size: 20px;
+    font-style: italic;
+     
+    margin: 0;
+    padding: 0;
+    height: 170px;
+    width: 49%;
+    display: inline-block;
         }
         
-        .companybox1 {
-            font-size: 20px;
-            font-style: italic;
-             
-            margin: 0;
-            padding: 0;
-            height: 130px;
-            width: 10%;
-            display: inline-block;
-        }
-        .companybox2 {
-            font-size: 20px;
-            font-style: italic;
-             
-            margin: 0;
-            padding: 0;
-            height: 130px;
-            width: 79%;
-            display: inline-block;
-        }
+.companybox {
+    font-size: 20px;
+    font-style: italic;
+     
+    margin: 0;
+    padding: 0;
+    height: 130px;
+    width: 90%;
+    }
         
-        
-    </style>
+ .companybox1 {
+    font-size: 20px;
+    font-style: italic;
+             
+    margin: 0;
+    padding: 0;
+    height: 130px;
+    width: 10%;
+    display: inline-block;
+    }
+.companybox2 {
+    font-size: 20px;
+    font-style: italic;
+             
+    margin: 0;
+    padding: 0;
+    height: 130px;
+    width: 79%;
+    display: inline-block;
+    }
+
+.course_name,
+.course_description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+body{
+    background-color: white;
+}
+
+
+form{
+    /* 设置form 宽度为400px */
+    width: 400px;
+    /*设置form居中*/
+    margin: 0 auto;
+}
+
+.nav-pagination {
+    text-align: center;
+}
+
+.company-detail {
+    margin: 30px 0;
+    font-size: 15px;
+}
+.job-item {
+    border: 1px solid black;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+}
+
+.job-salary {
+    color: #fd5f39;
+}
+   
+.job-detail {
+    font-size: 15px;
+    margin-bottom: 50px;
+}
+
+.job-meta,.timesince {
+    color: #999;
+}  
+
+</style>
     
     </head>
     <body>

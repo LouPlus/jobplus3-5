@@ -3,18 +3,40 @@
 <div class="container">
 <div class="row">
     <div class="col-md-8">
-        
-        <p>{{ company_information.companyname }}</p>
-    <p>{{ company_information.desc }}</p>
-    <p>{{ company_information.companyname }}</p>
-    <p>{{ company_information.companyname }}</p>
+        <ul class="nav nav-tabs">
+            <h4>
+            <p>Companyname: {{ company_information.companyname }}</p>
+           
+                </h4>
+        </ul>
+   
+    <div class="company-detail">
+    {% for job in company_job %}
+    <div class="job-item">
+        <a href="{{ url_for('job.job_information',job_id=job.id) }}">
+        <h3> jobname: {{ job.jobname }}</h3>
+        <p>
+            <span class="job-salary">salary: {{ job.salary }}</span>
+            &nbsp;
+            <span class="job-meta">exprequirement: {{ job.exprequirement}}</span>
+        </p>
+        </a>
     </div>
-    
-
-    
+    {% endfor %}
+    </div>
+    </div>
+        
+        
     <div class="col-md-4">
-    <p>{{ company_information.companyname }}</p>
-    
+        <h3>company information</h3>
+    <h4>
+        <p style="border-bottom: 1px solid black;">Companyname:&nbsp; {{ company_information.companyname }}</p>
+        <p style="border-bottom: 1px solid black;">Website: &nbsp;{{ company_information.website }}</p>
+        <p style="border-bottom: 1px solid black;">Address: &nbsp;{{ company_information.address }}</p>
+        <p style="border-bottom: 1px solid black;">Intro: &nbsp;{{ company_information.intro }}</p>
+        <p style="border-bottom: 1px solid black;">Description: &nbsp;{{ company_information.desc }}</p>
+        
+    </h4>
     </div>
     
     </div>

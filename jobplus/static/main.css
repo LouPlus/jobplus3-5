@@ -4,6 +4,83 @@ a:visited {
     text-decoration: none !important;
 }
 
+
+.a {
+    height:270px;
+    border:1px solid #ccc;
+    margin-bottom: 35px;
+    padding: 0;
+    }
+.position-left {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    }
+.position-right1 {
+    display: inline-block;
+    margin-left:0.6em;
+    margin: 0;
+    padding: 0;
+    }
+.position-right2 {
+    display: inline-block;
+    font-size: 18px;
+    
+    color: crimson;
+    margin: 0;
+    padding: 0;
+    padding-left: 30px;
+        
+}
+.mybox {
+    border: 1px solid #ccc;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 5px;
+    }
+.jobbox {
+    font-size: 20px;
+    font-style: italic;
+     
+    margin: 0;
+    padding: 0;
+    height: 170px;
+    width: 49%;
+    display: inline-block;
+        }
+        
+.companybox {
+    font-size: 20px;
+    font-style: italic;
+     
+    margin: 0;
+    padding: 0;
+    height: 130px;
+    width: 90%;
+    }
+        
+ .companybox1 {
+    font-size: 20px;
+    font-style: italic;
+             
+    margin: 0;
+    padding: 0;
+    height: 130px;
+    width: 10%;
+    display: inline-block;
+    }
+.companybox2 {
+    font-size: 20px;
+    font-style: italic;
+             
+    margin: 0;
+    padding: 0;
+    height: 130px;
+    width: 79%;
+    display: inline-block;
+    }
+
 .course_name,
 .course_description {
     text-overflow: ellipsis;
@@ -26,4 +103,24 @@ form{
 
 .nav-pagination {
     text-align: center;
+}
+
+.company-detail {
+    margin: 30px 0;
+    font-size: 20px;
+}
+.job-item {
+    border: 2px;
+    
+    
+    padding: 15px 10px;
+    margin-bottom: 15px;
+}
+
+.job-salary {
+    color: #fd5f39;
+}
+
+.job-meta,.timesince {
+    color: #999;
 }

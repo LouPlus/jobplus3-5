@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% block body %} 
 <div class="container">
+    <div class="row"><h2>Job detail</h2></div>
 <div class="row">
     <div class="col-md-8">
-       
-        <p>{{ job_information.jobname }}</p>
-    <p>{{ job_information.desc }}</p>
-    <p>{{ job_information.jobname }}</p>
-    <p>{{ job_information.jobname }}</p>
+       <ul class="nav nav-tabs">
+           <h2>jobname: {{ job_information.jobname }}</h2>
+           <span class="timesince">{{ job_information.created_at }} : publish</span>
+           <p><span class="job-salary">salary: {{  job_information.salary }}</span>&nbsp;&nbsp;&nbsp;exprience: {{ job_information.exprequirement }}</p>
+       </ul>
+
     </div>
     
 
@@ -20,9 +22,36 @@
           <a href="#" class="btn btn-success btn-lg dilivery-btn" disabled="disabled">submited</a>
         {% endif %}
     {% endif %}
+        
+    </div>
+    </div>
+</div>
+    <div class="container">
+<div class="row">
+    <div class="col-md-8">
+        <div style="border-top: 1px solid black;" class="job-detail">
+            <h3>desc:{{ job_information.desc }}</h3>
+            <h3>address:{{ job_information.address }}</h3>
+            <h3>edurequirement:{{ job_information.edurequirement }}</h3>
+            <h3>requirement: {{ job_information.requirement }}</h3>
+            
+        </div>
+    </div>
+    <div style="border-top: 1px solid black;" class="col-md-4">
+    <div class="media">
+        <div class="media-left">
+        
+           </div>
+        <div class="media-body">
+        </div>
+        </div>
+    <h4>company name: {{ company.companyname }}</h4>
+        <p>company description: {{ company.desc }}</p>
+        
+        
     </div>
     
     </div>
-
 </div>
+
 {% endblock %}
