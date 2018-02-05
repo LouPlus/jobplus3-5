@@ -7,31 +7,30 @@
 
 
 <div class="container">
-   
-        <!-- this is really code -->
+    <h1 align="center">the latest job</h1>
+    <div class="row">
         {% for one in pagination.items %}
-        <div class="col-lg-3 col-md-4 col-md-offset-1 col-sm-6 a">
-            <div class="mybox">
-            <p class="position-left"><a href="{{ url_for('job.job_information',job_id=one.id) }}">job_name:{{one.jobname}}</a></p>
-            
-            <p class="position-right2">salary:{{one.salary}}</p>
-            </div>
-            <div class="mybox">experience:{{one.exprequirement}}
-            </div>
-            <div class="mybox">
-                <p class="position-right1">datetime:{{one.updated_at}}</p>
-            </div>
-            <div style="display: inline-block">
-                <span style="font-size: 40px; margin-top: 20px;" class="glyphicon glyphicon-user"></span>
-            </div>
-            <div style="display: inline-block; padding-left: 15px; font-size: 16px;">
+            <div class="col-md-4 indexbox">
+                <p style="border-bottom: 1px solid black"><a href="{{ url_for('job.job_information',job_id=one.id)}}">job_name:{{one.jobname}} </a></p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p style="color:crimson">salary:{{one.salary}}</p>
+                        <p>describe:{{one.desc}}</p>
+                        <p>experience:{{one.exprequirement}}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ url_for('company.company_information',company_id=one.company_id) }}">
+                             <p style="font-size: 80px;margin-top: 20px;margin-left: 70px" class="glyphicon glyphicon-list"></p>
+                        </a>
+                    </div>
+                </div>
                 <p>edurequirement:{{one.edurequirement}}</p>
-                <p>describe:{{one.desc}}</p>
+                <p >datetime:{{one.updated_at}}</p>
             </div>
-       </div>
-        {% endfor%}
-        
+        {% endfor %}
     </div>
+</div>
+
 {{ render_pagination(pagination, 'front.index') }}
        
 
